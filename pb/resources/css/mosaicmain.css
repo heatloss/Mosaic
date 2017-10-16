@@ -1,0 +1,69 @@
+.mosaicMain {
+	margin-top: 50px;
+}
+
+.mosaicMain .feedsViewport {
+	width: 100vw;
+	height: calc(100vh - 200px);
+	overflow: hidden;
+}
+
+.mosaicMain .feedsList {
+	display: flex;
+	margin-left: 10vw;
+}
+
+.mosaicMain .feedsList > li {
+	flex: none;
+	width: 80vw;
+}
+
+.mosaicMain .feedsList > li > .card {
+	box-sizing: border-box;
+	height: calc(100vh - 200px);
+	padding: 15px 10px;
+	margin-right: 5vw;
+	border: 2px solid #999;
+	border-radius: 5px;
+	font-family: "Myriad Pro", "Helvetica Neue", "Helvetica Neue Light", Helvetica, Arial, "Lucida Grande", sans-serif;
+	color: #fff;
+	overflow-y: scroll;
+/* 	-webkit-overflow-scrolling: touch; */
+}
+
+.mosaicMain .feedsList .cardTitle {
+	font-size: 14px;
+	position: relative;
+	padding-top: 1em;
+	margin-bottom: 2em;
+}
+
+.mosaicMain .feedsList .cardTitle:before {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 4px;
+	width: 8vw;
+	background-color: #fff;
+}
+
+.mosaicMain .feedsList .cardHeds > li {
+	padding-bottom: 1em;
+}
+
+.mosaicMain .feedsList .cardHeds > li img {
+	width: calc(100% + 20px);
+	height: auto;
+	margin: 0 -10px;
+}
+
+.mosaicMain .feedsList .cardHed {
+	font-family: Didot, "Bodoni 72", Georgia, serif;
+	font-size: 14px;
+	margin-bottom: 0.25em;
+}
+
+.mosaicMain .feedsList .cardHeds > li:first-child .cardHed {
+	font-size: 18px;
+}
