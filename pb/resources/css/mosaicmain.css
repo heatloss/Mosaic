@@ -31,6 +31,10 @@
 /* 	-webkit-overflow-scrolling: touch; */
 }
 
+.mosaicMain .feedsList > li > .card::-webkit-scrollbar { 
+    display: none; 
+}
+
 .mosaicMain .feedsList .cardTitle {
 	font-size: 14px;
 	position: relative;

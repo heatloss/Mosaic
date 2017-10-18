@@ -14,7 +14,7 @@
   Carousel.prototype = {
     initCarousel: function(carousel) {
       this.carousel = carousel; // storing the DOM object
-      this.drag = 0;
+     this.drag = 0;
       this.touching = false;
       this.x = 0;
       this.y = 0;
@@ -57,8 +57,7 @@
         window.addEventListener('orientationchange', this.initSnaps.bind(this));
         window.addEventListener('resize', this.initSnaps.bind(this));
       }
-
-      this.triggerEvent('loaded', this.carousel);
+//       this.triggerEvent('loaded', this.carousel);
     },
 
     iOS10DisableScroll: function(e) {
@@ -90,6 +89,7 @@
     initSlides: function() {
       this.initSlideStates();
       this.slides = this.carousel.querySelectorAll(':scope > li'); // NOTE: :scope has been deprecated.
+			this.cube = document.querySelector(".cube.depth");
       this.initSnaps();
     },
 
@@ -187,6 +187,11 @@
         this.slides[i].style[this.transformStyle] =
           'translate3d(' + this.drag + 'px, 0, 0)';
       }
+
+			var dragDistance = this.drag - this.snaps[this.previndex];
+			var spanDistance = this.snaps[this.previndex - this.dir] - this.snaps[this.previndex];
+      var rotateAmount = (90*dragDistance/spanDistance*this.dir);
+      this.cube.style[this.transformStyle] = 'rotateY(' + rotateAmount + 'deg)';
     },
 
     slidesController: function(x, y) {
@@ -259,25 +264,16 @@
           this.slides[i].classList.remove('snap');
         }
       }
+      
+            this.cube.style[this.transformStyle] = 'rotateY(0deg)';
+
       this.slides[snapIndex].classList.add('snap');
       if (this.previndex !== snapIndex) {
         //         this.triggerEvent("snap", this.carousel);
         this.previndex = snapIndex;
-//         this.triggerEvent('photo_changed', this.carousel);
       } else {
         this.previndex = snapIndex;
       }
-    },
-
-    getTransformArray: function(obj) {
-      var transformString = window
-        .getComputedStyle(obj, null)
-        .getPropertyValue(this.transformAttr);
-      var transformArray =
-        typeof transformString !== undefined && transformString !== 'none'
-          ? transformString.substr(7, transformString.length - 8).split(', ')
-          : [0, 0, 0, 0, 0, 0];
-      return transformArray + this.offset;
     },
 
     parseE: function(e) {
