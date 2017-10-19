@@ -189,8 +189,9 @@
       }
 
 			var dragDistance = this.drag - this.snaps[this.previndex];
-			var spanDistance = this.snaps[this.previndex - this.dir] - this.snaps[this.previndex];
-      var rotateAmount = (90*dragDistance/spanDistance*this.dir);
+			var offsetDir = dragDistance > 0 ? 1 : -1;
+			var spanDistance = this.snaps[this.previndex - offsetDir] - this.snaps[this.previndex];
+      var rotateAmount = (90*dragDistance/spanDistance * offsetDir);
       this.cube.style[this.transformStyle] = 'rotateY(' + rotateAmount + 'deg)';
     },
 
