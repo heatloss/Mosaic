@@ -21,11 +21,11 @@ function init() {
 		
 		mosaicCube.querySelector(".pane.front").classList.remove("news","trending","chronological");
 		mosaicCube.querySelector(".pane.front").classList.add(mosaicCards[snapIndex]);
-		var prevIcon = mosaicCards[snapIndex - 1] || "";
-		var nextIcon = mosaicCards[snapIndex + 1] || "";
-		mosaicCube.querySelector(".pane.left").classList.remove("news","trending","chronological");
+		var prevIcon = mosaicCards[snapIndex - 1] || "null";
+		var nextIcon = mosaicCards[snapIndex + 1] || "null";
+		mosaicCube.querySelector(".pane.left").classList.remove("null", "news","trending","chronological");
 		mosaicCube.querySelector(".pane.left").classList.add(prevIcon);
-		mosaicCube.querySelector(".pane.right").classList.remove("news","trending","chronological");
+		mosaicCube.querySelector(".pane.right").classList.remove("null","news","trending","chronological");
 		mosaicCube.querySelector(".pane.right").classList.add(nextIcon);
 	}
 
