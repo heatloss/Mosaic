@@ -1,5 +1,5 @@
 function init() {
-	var mosaicButton = document.querySelector(".mosaicToggle");
+	var mosaicButton = document.querySelector(".cube.depth");
 	var mosaicPanel = document.querySelector(".panel.paneltype-nav");
 	mosaicButton.addEventListener("click", toggleMosaic);
 	
