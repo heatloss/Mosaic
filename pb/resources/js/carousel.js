@@ -157,6 +157,7 @@
           Math.abs(xDelta) > Math.abs(yDelta * 2.83) ? 'x' : 'y'; // Initial horizontal movement must be 2.83x the vertical movement in order to trigger a swipe
         if (this.carousel.primaryDir === 'x') {
           this.carousel.classList.add('dragging');
+          this.cube.classList.add('dragging');
           this.swiped = true;
         }
       }
@@ -175,6 +176,7 @@
       window.removeEventListener(this.endEvent, this.endFunc);
       this.touching = false;
       this.carousel.classList.remove('dragging');
+      this.cube.classList.remove('dragging');
       if (this.swiped && this.snapping) {
         this.calcSnap();
       }
@@ -241,7 +243,7 @@
         var dragDistance = this.drag - this.snaps[this.previndex];
         var spanDistance = this.snaps[goalIndex] - this.snaps[closestIndex];
         var dragPercent = dragDistance / spanDistance;
-        if (dragPercent > 0.1) {
+        if (dragPercent > 0.25) {
           snapIndex = goalIndex;
         }
       }
@@ -266,11 +268,11 @@
         }
       }
       
-            this.cube.style[this.transformStyle] = 'rotateY(0deg)';
 
       this.slides[snapIndex].classList.add('snap');
       if (this.previndex !== snapIndex) {
-        //         this.triggerEvent("snap", this.carousel);
+				this.cube.style[this.transformStyle] = 'rotateY(0deg)';
+				this.triggerEvent("snap", this.carousel, snapIndex);
         this.previndex = snapIndex;
       } else {
         this.previndex = snapIndex;
@@ -285,11 +287,12 @@
       }
     },
 
-    triggerEvent: function(theEvent, theElement) {
+    triggerEvent: function(theEvent, theElement, arg) {
       var e = document.createEvent('Events');
       var element = theElement || window;
       e.initEvent(theEvent, true, true);
-      element.dispatchEvent(e);
+      e.customArg = arg;
+      element.dispatchEvent(e, arg);
     }
   };
 
